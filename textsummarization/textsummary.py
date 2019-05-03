@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# In[46]:
 
 
 from newspaper import Article # newspaper : url에서 text를 크롤링 하는 패키지
@@ -12,9 +9,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.preprocessing import normalize
 
 import numpy as np
-
-
-# In[47]:
 
 
 class SentenceTokenizer(object):
@@ -58,11 +52,6 @@ class SentenceTokenizer(object):
             if noun not in self.stopwords and len(noun) > 1]))
         return nouns
 
-
-
-# In[48]:
-
-
 class GraphMatrix(object):
     def __init__(self):
         self.tfidf = TfidfVectorizer()
@@ -79,10 +68,6 @@ class GraphMatrix(object):
         vocab = self.cnt_vec.vocabulary_
         return np.dot(cnt_vec_mat.T, cnt_vec_mat), {vocab[word] : word for word in vocab}
 
-
-# In[49]:
-
-
 class Rank(object):
     def get_ranks(self, graph, d=0.85): # d = damping factor
         A = graph
@@ -98,11 +83,6 @@ class Rank(object):
         B = (1-d) * np.ones((matrix_size, 1))
         ranks = np.linalg.solve(A, B) # 연립방정식 Ax = b
         return {idx: r[0] for idx, r in enumerate(ranks)}
-
-
-
-# In[58]:
-
 
 class TextRank(object):
     def __init__(self, text):
@@ -155,10 +135,6 @@ class TextRank(object):
             
         return keywords
 
-
-# In[61]:
-
-
 # url을 통해 문장 요약 
 
 url = 'https://news.naver.com/main/read.nhn?mode=LSD&mid=shm&sid1=103&oid=437&aid=0000209082'
@@ -179,16 +155,6 @@ for row in textrank.summarize(3):
     print(row)
     print()
 print('keywords :',textrank.keywords())
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
 
 
 
