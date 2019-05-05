@@ -1,6 +1,3 @@
-
-
-
 from newspaper import Article # newspaper : url에서 text를 크롤링 하는 패키지
 from konlpy.tag import Kkma # KoNLPY : 한국 형태소 분석기 , KKMA : 문장 단위 분리 
 from konlpy.tag import Twitter # Twitter : 명사 추출 
@@ -9,7 +6,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.preprocessing import normalize
 
 import numpy as np
-
 
 class SentenceTokenizer(object):
     def __init__(self):
